@@ -1,4 +1,5 @@
 from django.db import models
+from apps.images.models import Image
 
 
 class Phone(models.Model):
@@ -15,9 +16,20 @@ class Phone(models.Model):
         som = "Som"
         dollar = "Dollar"
         euro = "Euro"
+
+    class ColorChoice(models.TextChoices):
+        black = "Black"
+        white = "White"
+    class MemoryChoice(models.TextChoices):
+        gb256 = "256 GB"
+        gb512 = "512 GB"
+        tb1 = "1 TB"
     name = models.CharField(max_length=150, verbose_name="Название")
+    description = models.TextField(verbose_name="Описание")
+    color = models.CharField(max_length=150, choices=ColorChoice.choices)
+    memory = models.CharField(max_length=150, choices=MemoryChoice.choices)
     model = models.CharField(max_length=150, verbose_name="Модель")
-    image = models.FileField(upload_to="phone_image", verbose_name="Картинка")
+    image = models.ManyToManyField(Image, related_name="phone_images", verbose_name="Картинка")
     price = models.IntegerField(default=0, verbose_name="Цена")
     currency = models.CharField(max_length=150, choices=CurrencyChoice.choices, verbose_name="Валюта")
     company = models.CharField(max_length=150, choices=CompanyChoice.choices, verbose_name="Компания")

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'drf_yasg',
 
     # apps
-    'apps.phones'
+    'apps.phones',
+    'apps.images'
 ]
 
 MIDDLEWARE = [
