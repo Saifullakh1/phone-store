@@ -33,7 +33,10 @@ class Phone(models.Model):
     price = models.IntegerField(default=0, verbose_name="Цена")
     currency = models.CharField(max_length=150, choices=CurrencyChoice.choices, verbose_name="Валюта")
     company = models.CharField(max_length=150, choices=CompanyChoice.choices, verbose_name="Компания")
+    ratings = models.FloatField(default=0, verbose_name="Оценка")
     published = models.DateField(verbose_name="Дата выпуска")
+    is_exists = models.BooleanField(default=True, verbose_name="Есть в наличии")
+    is_active = models.BooleanField(default=True, verbose_name="Активный")
 
     class Meta:
         verbose_name = "Телефон"

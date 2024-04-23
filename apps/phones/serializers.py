@@ -19,7 +19,8 @@ class PhoneListSerializer(serializers.ModelSerializer):
         model = Phone
         fields = ("id", "name",
                   "color", "memory", "model",
-                  "image", "price", "currency")
+                  "image", "price", "currency",
+                  "is_exists", "is_active")
 
 
 class PhoneDetailSerializer(serializers.ModelSerializer):
@@ -30,5 +31,6 @@ class PhoneDetailSerializer(serializers.ModelSerializer):
         fields = ("id", "name", "description",
                   "color", "memory", "model",
                   "image", "price", "currency",
-                  "company", "published")
+                  "company", "ratings", "published",
+                  "is_exists", "is_active")
 
