@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Phone
 from apps.images.serializers import ImageSerializer
+from apps.reviews.serializers import ReviewSerializer
 
 
 class PhoneSerializer(serializers.ModelSerializer):
@@ -25,6 +26,7 @@ class PhoneListSerializer(serializers.ModelSerializer):
 
 class PhoneDetailSerializer(serializers.ModelSerializer):
     image = ImageSerializer(many=True)
+    phone_reviews = ReviewSerializer(many=True)
 
     class Meta:
         model = Phone
@@ -32,5 +34,5 @@ class PhoneDetailSerializer(serializers.ModelSerializer):
                   "color", "memory", "model",
                   "image", "price", "currency",
                   "company", "ratings", "published",
-                  "is_exists", "is_active")
+                  "is_exists", "is_active", "phone_reviews")
 
