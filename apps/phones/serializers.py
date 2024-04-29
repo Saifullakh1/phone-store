@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Phone
 from apps.images.serializers import ImageSerializer
-from apps.reviews.serializers import ReviewSerializer
+from apps.reviews.serializers import ReviewListSerializer
 
 
 class PhoneSerializer(serializers.ModelSerializer):
@@ -26,7 +26,7 @@ class PhoneListSerializer(serializers.ModelSerializer):
 
 class PhoneDetailSerializer(serializers.ModelSerializer):
     image = ImageSerializer(many=True)
-    phone_reviews = ReviewSerializer(many=True)
+    phone_reviews = ReviewListSerializer(many=True)
 
     class Meta:
         model = Phone
