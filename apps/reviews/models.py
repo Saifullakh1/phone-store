@@ -23,7 +23,7 @@ class Review(models.Model):
         ordering = ('-id',)
 
     def __str__(self):
-        return str(self.phone)
+        return f"{self.phone} - {self.comment} - {self.user}"
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -44,6 +44,19 @@ class Favorite(models.Model):
     def __str__(self):
         return f"{self.user} - {self.phone}"
 
+
+class Like(models.Model):
+    review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name="review_likes")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_likes")
+    is_like = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = "Лайк"
+        verbose_name_plural = "Лайки"
+
+    def __str__(self):
+        return f"{self.review} - {self.is_like}"
 
 
 

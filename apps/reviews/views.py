@@ -2,8 +2,8 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from django_filters import rest_framework as filters
 
-from .models import Review, Favorite
-from .serializers import ReviewSerializer, ReviewListSerializer, FavoriteSerializer, FavoriteListSerializer
+from .models import Review, Favorite, Like
+from .serializers import ReviewSerializer, ReviewListSerializer, FavoriteSerializer, FavoriteListSerializer, LikeSerializer
 from .filters import ReviewFilter, FavoriteFilter
 
 
@@ -41,3 +41,8 @@ class FavoriteAPIViewSet(viewsets.ModelViewSet):
         if self.action in 'list':
             return FavoriteListSerializer
         return self.serializer_class
+
+
+class LikeAPIViewSet(viewsets.ModelViewSet):
+    queryset = Like.objects.all()
+    serializer_class = LikeSerializer
